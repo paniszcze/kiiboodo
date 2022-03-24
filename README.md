@@ -1,6 +1,6 @@
 # キーボード
 
-Gamified typing practice of Japanese kana. Heavilly inspired by [bisqwit's WSpeed game](https://bisqwit.iki.fi/wspeed/).
+Gamified typing practice of Japanese kana.
 
 ## About
 
