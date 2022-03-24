@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/kiiboodo/static/css/main.feca643a.css",
+    "main.js": "/kiiboodo/static/js/main.1db857f1.js",
+    "index.html": "/kiiboodo/index.html",
+    "main.feca643a.css.map": "/kiiboodo/static/css/main.feca643a.css.map",
+    "main.1db857f1.js.map": "/kiiboodo/static/js/main.1db857f1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.feca643a.css",
+    "static/js/main.1db857f1.js"
+  ]
+}
