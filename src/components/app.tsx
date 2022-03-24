@@ -2,12 +2,23 @@ import * as React from "react";
 
 import "../styles/app.css";
 
+import Canvas from "./canvas";
+import Header from "./header";
+import Dashboard from "./dashboard";
+
 const App = () => (
   <div className="App">
-    <header>
-      <h1 className="title">キーボード</h1>
-      <h2 className="subtitle">Kiiboodo</h2>
-    </header>
+    <Canvas />
+    <div className="sidebar">
+      <Header />
+      <Dashboard />
+      <footer>
+        built by <a
+          href="https://github.com/paniszcze/kiiboodo"
+          rel="noreferrer"
+          target="_blank">paniszcze</a>, 2022
+      </footer>
+    </div>
   </div>
 );
 

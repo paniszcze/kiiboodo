@@ -1,0 +1,28 @@
+.Dashboard {
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.life-bar {
+  margin: 30px 0 16px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.heart {
+  width: 20px;
+  height: 20px;
+  background: no-repeat center
+    url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="9" height="9" xmlns="http://www.w3.org/2000/svg"><path d="M1 0 h3 v1 h1 v-1 h3 v1 h1 v3 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-3 h1 z" fill="%23ff0000" /><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z" fill="%23fff" /></svg>');
+  background-size: cover;
+}
+
+.skull {
+  width: 20px;
+  height: 20px;
+  background: no-repeat center
+    url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="9" height="9" xmlns="http://www.w3.org/2000/svg"><path d="M2 0 h5 v1 h1 v1 h1 v4 h-1 v1 h-2 v2 h-1 v-1 h-1 v1 h-1 v-1 h-1 v1 h-1 v-2 h-1 v-1 h2 v-2 h-2 v-2 h1 v-1 h1 z" fill="%23fff" /><path d="M3 5 h1 v1 h-1 z" fill="%23000" /><path d="M5 4 h2 v2 h-2 z" fill="%23000" /></svg>');
+  background-size: cover;
+}

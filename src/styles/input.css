@@ -1,0 +1,15 @@
+.Input {
+  position: relative;
+}
+
+.Input input {
+  width: 220px;
+  height: 30px;
+  position: absolute;
+  top: 550px;
+  left: 84px;
+  font-family: DotGothic16;
+  font-size: 20px;
+  text-align: center;
+  z-index: 99;
+}

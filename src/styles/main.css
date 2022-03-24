@@ -1,12 +1,52 @@
 @import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
 body {
   margin: 0;
+  font-size: 16px;
   font-family: VT323, sans-serif;
+  text-align: center;
+  color: #ffffff;
+  background: #000000;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+#root {
+  display: flex;
+  height: 100vh;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: #00ff00;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  display: block;
+  padding: 2px 6px 3px;
+  cursor: pointer;
+  font-size: 24px;
+  font-family: VT323, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+button:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.pixel-border {
+  margin: 3px auto;
+  border-style: solid;
+  border-width: 3px;
+  border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="3" height="3" xmlns="http://www.w3.org/2000/svg"><path d="M1 0 h1 v1 h-1 z M0 1 h1 v1 h-1 z M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z" fill="%23fff" /></svg>');
+  border-image-repeat: stretch;
+  border-image-slice: 1;
+  border-image-width: 1;
+  border-image-outset: 1;
 }

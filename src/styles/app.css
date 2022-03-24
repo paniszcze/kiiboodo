@@ -1,7 +1,17 @@
 .App {
+  margin: auto;
+  padding: 20px 0;
   text-align: center;
+  display: flex;
+  gap: 20px;
 }
 
-.title {
-  font-family: DotGothic16;
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+footer {
+  padding: 20px;
 }
