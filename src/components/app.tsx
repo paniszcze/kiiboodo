@@ -5,21 +5,24 @@ import "../styles/app.css";
 import Canvas from "./canvas";
 import Header from "./header";
 import Dashboard from "./dashboard";
+import Footer from "./footer";
 
-const App = () => (
-  <div className="App">
-    <Canvas />
-    <div className="sidebar">
-      <Header />
-      <Dashboard />
-      <footer>
-        built by <a
-          href="https://github.com/paniszcze/kiiboodo"
-          rel="noreferrer"
-          target="_blank">paniszcze</a>, 2022
-      </footer>
+import { MAX_LIVES } from "../utils/constants";
+
+const App = () => {
+  const [lives, setLives] = React.useState(MAX_LIVES);
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div className="App">
+      <Canvas />
+      <div className="sidebar">
+        <Header />
+        <Dashboard lives={lives} count={count} />
+        <Footer />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default App;
