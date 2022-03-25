@@ -3,4 +3,14 @@
   height: 650px;
   background-color: #000000;
   color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.wordContainer {
+  position: absolute;
+}
+
+.word {
+  transform: translateX(-50%);
 }
