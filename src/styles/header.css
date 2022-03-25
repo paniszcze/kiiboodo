@@ -1,4 +1,4 @@
-.Header {
+header {
   width: 200px;
   color: #ffffff;
 }
@@ -8,4 +8,6 @@
   font-size: 30px;
 }
 
-/* .subtitle {} */
+.subtitle {
+  font-size: 24px;
+}
