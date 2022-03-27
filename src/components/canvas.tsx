@@ -4,6 +4,7 @@ import "../styles/canvas.css";
 
 import { CanvasProps, WordInterface } from "../utils/types";
 import { generateWord } from "../utils/dict";
+import { CASCADE_STEP, CANVAS_HEIGHT } from "../utils/constants";
 
 const Canvas = ({
   stats: { score, lives },
@@ -20,31 +21,58 @@ const Canvas = ({
 
   const addWord = () => {
     let newWord = generateWord();
-    // TODO: check for duplicates
     setWords((prevWords) => [...prevWords, newWord]);
   };
 
-  // TODOS:
-  // findWord
-  // removeWord
-  // ...
+  const findWord = (entry: string): number =>
+    words.findIndex((word) => word.text === entry);
+
+  const removeWord = (index: number) => {
+    setWords((prevWords) => {
+      let newWords = [...prevWords];
+      newWords[index] = { ...prevWords[index], isEliminated: true };
+      return newWords;
+    });
+  };
+
+  const moveWords = () => {
+    setWords((prevWords) =>
+      prevWords.map((word) => {
+        if (!word.isEliminated) {
+          let newPosition = word.y + CASCADE_STEP;
+          return {
+            ...word,
+            y: newPosition,
+            isEliminated: newPosition > CANVAS_HEIGHT ? true : false,
+          };
+        } else {
+          return { ...word };
+        }
+      })
+    );
+  };
 
   React.useEffect(() => {
-    addWord();
-  }, []);
+    if (isRunning) {
+      addWord();
+      moveWords();
+    }
+  }, [isRunning]);
 
   return (
     <div className="Canvas">
       {words.length !== 0 &&
-        words.map((word, index) => (
-          <div
-            key={index}
-            className="word"
-            style={{ top: `${word.y}px`, left: `${word.x}px` }}
-          >
-            {word.text}
-          </div>
-        ))}
+        words
+          .filter((word) => !word.isEliminated)
+          .map((word, index) => (
+            <div
+              key={index}
+              className="word"
+              style={{ top: `${word.y}px`, left: `${word.x}px` }}
+            >
+              {word.text}
+            </div>
+          ))}
       <input
         type="text"
         name="text"
