@@ -1,16 +1,34 @@
 .Canvas {
+  position: relative;
   width: 400px;
   height: 650px;
-  background-color: #000000;
+  font-family: DotGothic16;
   color: #ffffff;
-  position: relative;
+  border-style: solid;
+  border-width: 3px;
+  border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="3" height="3" xmlns="http://www.w3.org/2000/svg"><path d="M1 0 h1 v1 h-1 z M0 1 h1 v1 h-1 z M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z" fill="%23fff" /></svg>');
+  border-image-repeat: stretch;
+  border-image-slice: 1;
+  border-image-width: 1;
+  border-image-outset: 0;
   overflow: hidden;
 }
 
-.wordContainer {
+.Canvas input {
+  width: 220px;
+  height: 30px;
   position: absolute;
+  top: 550px;
+  left: 84px;
+  font-family: DotGothic16;
+  font-size: 20px;
+  text-align: center;
+  z-index: 99;
 }
 
 .word {
+  position: absolute;
+  width: max-content;
+  font-size: 14px;
   transform: translateX(-50%);
 }
