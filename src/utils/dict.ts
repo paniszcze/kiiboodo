@@ -6,7 +6,7 @@ import {
   KATAKANA_RATIO,
   LOWER_TRESHOLD,
   UPPER_TRESHOLD,
-  WIDTH,
+  CANVAS_WIDTH,
   FONT_WIDTH,
   STARTING_POSITION,
   PADDING,
@@ -46,7 +46,7 @@ export const generateWord = (): WordInterface => {
     text: entry,
     value: len,
     x: Math.floor(
-      Math.random() * (WIDTH - len * FONT_WIDTH - PADDING) +
+      Math.random() * (CANVAS_WIDTH - len * FONT_WIDTH - PADDING) +
         (len * FONT_WIDTH + PADDING) / 2
     ),
     y: STARTING_POSITION,
