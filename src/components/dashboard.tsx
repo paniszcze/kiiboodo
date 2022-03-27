@@ -14,8 +14,6 @@ const Dashboard = ({
     setIsRunning((prevState: boolean) => !prevState);
   };
 
-  console.log(isRunning);
-
   return (
     <div className="Dashboard">
       <button className="pixel-border out" onClick={handleClick}>
