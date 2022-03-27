@@ -1,4 +1,20 @@
-export const dict = {
+type Kana = {
+  2: string[];
+  3: string[];
+  4: string[];
+  5: string[];
+  6: string[];
+  7: string[];
+  8: string[];
+  9: string[];
+};
+
+type Dict = {
+  hiragana: Kana;
+  katakana: Kana;
+};
+
+export const dict : Dict = {
   hiragana: {
     2: [
       "いい",
