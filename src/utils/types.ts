@@ -11,11 +11,8 @@ export interface CanvasProps extends Stats {
 
 export interface WordInterface {
   text: string;
+  value: number;
   x: number;
   y: number;
   isEliminated: boolean;
-}
-
-export interface WordProps {
-  // ...
 }

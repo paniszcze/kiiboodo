@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import "../styles/canvas.css";
+import { generateWord } from "../utils/dict";
 
 import { CanvasProps, WordInterface } from "../utils/types";
 
@@ -12,9 +13,22 @@ const Canvas = ({ stats: { score, lives }, setStats }: CanvasProps) => {
     setUserInput(e.target.value);
   };
 
-  // addWord
+  const addWord = () => {
+    let newWord = generateWord();
+    // TODO: check for duplicates
+    setWords((prevWords) => {
+      return [...prevWords, newWord];
+    });
+  };
+
+  // TODOS:
+  // findWord
   // removeWord
-  // populateWords
+  // ...
+
+  React.useEffect(() => {
+    addWord();
+  }, []);
 
   return (
     <div className="Canvas">
