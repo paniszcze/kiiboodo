@@ -2,21 +2,21 @@ import * as React from "react";
 
 import "../styles/dashboard.css";
 
-type Props = {
-  lives: number;
-  count: number;
-};
+import { MAX_LIVES, SKULL, HEART } from "../utils/constants";
+import { Stats } from "../utils/types";
 
-const Dashboard = (props: Props) => (
+const Dashboard = ({ stats: { score, lives } }: Stats) => (
   <div className="Dashboard">
-    <button className="pixel-border">START</button>
+    <button className="pixel-border out">START</button>
     <div className="life-bar">
-      <div className="heart"></div>
-      <div className="heart"></div>
-      <div className="heart"></div>
-      <div className="skull"></div>
+      {Array(MAX_LIVES)
+        .fill(SKULL)
+        .fill(HEART, 0, lives)
+        .map((item, index) => (
+          <div key={index} className={`${item ? "heart" : "skull"}`}></div>
+        ))}
     </div>
-    Score: {props.count}
+    Score: {score}
   </div>
 );
 

@@ -2,10 +2,14 @@
   padding: 20px;
   font-size: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .life-bar {
-  margin: 30px 0 16px;
+  margin: 26px 0 16px;
   display: flex;
   justify-content: center;
   gap: 10px;
