@@ -5,8 +5,15 @@ export interface Stats {
   };
 }
 
+export interface DashboardProps extends Stats {
+  isRunning: boolean;
+  setIsRunning: Function;
+}
+
 export interface CanvasProps extends Stats {
   setStats: Function;
+  isRunning: boolean;
+  setIsRunning: Function;
 }
 
 export interface WordInterface {

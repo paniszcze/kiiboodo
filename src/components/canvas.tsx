@@ -1,11 +1,16 @@
 import * as React from "react";
 
 import "../styles/canvas.css";
-import { generateWord } from "../utils/dict";
 
 import { CanvasProps, WordInterface } from "../utils/types";
+import { generateWord } from "../utils/dict";
 
-const Canvas = ({ stats: { score, lives }, setStats }: CanvasProps) => {
+const Canvas = ({
+  stats: { score, lives },
+  setStats,
+  isRunning,
+  setIsRunning,
+}: CanvasProps) => {
   const [words, setWords] = React.useState<WordInterface[]>([]);
   const [userInput, setUserInput] = React.useState("");
 
@@ -16,9 +21,7 @@ const Canvas = ({ stats: { score, lives }, setStats }: CanvasProps) => {
   const addWord = () => {
     let newWord = generateWord();
     // TODO: check for duplicates
-    setWords((prevWords) => {
-      return [...prevWords, newWord];
-    });
+    setWords((prevWords) => [...prevWords, newWord]);
   };
 
   // TODOS:

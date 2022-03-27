@@ -14,13 +14,14 @@ const App = () => {
     score: INITIAL_SCORE,
     lives: MAX_LIVES,
   });
+  const [isRunning, setIsRunning] = React.useState(false);
 
   return (
     <div className="App">
-      <Canvas stats={stats} setStats={setStats} />
+      <Canvas stats={stats} setStats={setStats} isRunning={isRunning} setIsRunning={setIsRunning} />
       <div className="sidebar">
         <Header />
-        <Dashboard stats={stats} />
+        <Dashboard stats={stats} isRunning={isRunning} setIsRunning={setIsRunning} />
         <Footer />
       </div>
     </div>

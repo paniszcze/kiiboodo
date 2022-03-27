@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.Dashboard button {
+  width: 70px;
+}
+
 .life-bar {
   margin: 26px 0 16px;
   display: flex;
