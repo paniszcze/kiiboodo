@@ -8,20 +8,30 @@ import Dashboard from "./dashboard";
 import Footer from "./footer";
 
 import { INITIAL_SCORE, MAX_LIVES } from "../utils/constants";
+import { Stats } from "../utils/types";
 
 const App = () => {
-  const [stats, setStats] = React.useState({
+  const [stats, setStats] = React.useState<Stats>({
     score: INITIAL_SCORE,
     lives: MAX_LIVES,
   });
-  const [isRunning, setIsRunning] = React.useState(false);
+  const [isRunning, setIsRunning] = React.useState<boolean>(false);
 
   return (
     <div className="App">
-      <Canvas stats={stats} setStats={setStats} isRunning={isRunning} setIsRunning={setIsRunning} />
+      <Canvas
+        stats={stats}
+        setStats={setStats}
+        isRunning={isRunning}
+        setIsRunning={setIsRunning}
+      />
       <div className="sidebar">
         <Header />
-        <Dashboard stats={stats} isRunning={isRunning} setIsRunning={setIsRunning} />
+        <Dashboard
+          stats={stats}
+          isRunning={isRunning}
+          setIsRunning={setIsRunning}
+        />
         <Footer />
       </div>
     </div>

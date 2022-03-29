@@ -19,26 +19,33 @@ const Canvas = ({
   setIsRunning,
 }: CanvasProps) => {
   const [words, setWords] = React.useState<WordInterface[]>([]);
-  const [userInput, setUserInput] = React.useState("");
+  const [userInput, setUserInput] = React.useState<string>("");
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
   };
 
-  const addWord = () => {
-    let newWord = generateWord();
-    setWords((prevWords) => [...prevWords, newWord]);
-  };
-
   const findWord = (entry: string): number =>
     words.findIndex((word) => word.text === entry);
 
-  const removeWord = (index: number) => {
-    setWords((prevWords) => {
-      let newWords = [...prevWords];
-      newWords[index] = { ...prevWords[index], isEliminated: true };
-      return newWords;
-    });
+  const addWord = () => {
+    let newWord: WordInterface, index: number;
+    do {
+      newWord = generateWord();
+      index = findWord(newWord.text);
+    } while (words.length !== 0 && index !== -1);
+    setWords((prevWords) => [...prevWords, newWord]);
+  };
+
+  const removeWord = (entry: string) => {
+    let index = findWord(entry);
+    if (index !== -1) {
+      setWords((prevWords) => {
+        let newWords = [...prevWords];
+        newWords[index] = { ...prevWords[index], isEliminated: true };
+        return newWords;
+      });
+    }
   };
 
   const moveWords = () => {
@@ -66,9 +73,9 @@ const Canvas = ({
       {words.length !== 0 &&
         words
           .filter((word) => !word.isEliminated)
-          .map((word, index) => (
+          .map((word) => (
             <div
-              key={index}
+              key={word.text}
               className="word"
               style={{ top: `${word.y}px`, left: `${word.x}px` }}
             >

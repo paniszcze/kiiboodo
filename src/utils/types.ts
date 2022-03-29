@@ -1,29 +1,31 @@
-export type Delay = number | null;
+import { Dispatch, SetStateAction } from "react";
 
-export type Callback = (...args: any[]) => void;
+export type Stats = {
+  score: number;
+  lives: number;
+};
 
-export interface Stats {
-  stats: {
-    score: number;
-    lives: number;
-  };
-}
-
-export interface DashboardProps extends Stats {
-  isRunning: boolean;
-  setIsRunning: Function;
-}
-
-export interface CanvasProps extends Stats {
-  setStats: Function;
-  isRunning: boolean;
-  setIsRunning: Function;
-}
-
-export interface WordInterface {
+export type WordInterface = {
   text: string;
   value: number;
   x: number;
   y: number;
   isEliminated: boolean;
+};
+
+export type DelayType = number | null;
+
+export type CallbackType = (...args: any[]) => void;
+
+export interface DashboardProps {
+  stats: Stats;
+  isRunning: boolean;
+  setIsRunning: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface CanvasProps {
+  stats: Stats;
+  setStats: Dispatch<SetStateAction<Stats>>;
+  isRunning: boolean;
+  setIsRunning: Dispatch<SetStateAction<boolean>>;
 }
