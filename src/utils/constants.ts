@@ -19,9 +19,12 @@ export const UPPER_TRESHOLD = 0.7;
 // CANVAS POSITIONING
 export const CANVAS_WIDTH = 400;
 export const CANVAS_HEIGHT = 650;
-export const STARTING_POSITION = -45;
+export const STARTING_POSITION = -20;
 export const FONT_WIDTH = 14;
 export const PADDING = 8;
 
 // WORD CASCADE
-export const CASCADE_STEP = 20;
+export const CASCADE_STEP = 3;
+export const CASCADE_PERIOD = 250;
+export const MIN_LAUNCH_DELAY = Math.ceil(FONT_WIDTH / CASCADE_STEP) * CASCADE_PERIOD;
+export const MAX_LAUNCH_DELAY = 800;

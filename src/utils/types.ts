@@ -1,3 +1,7 @@
+export type Delay = number | null;
+
+export type Callback = (...args: any[]) => void;
+
 export interface Stats {
   stats: {
     score: number;

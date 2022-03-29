@@ -1,10 +1,16 @@
 import * as React from "react";
+import { useInterval } from "../hooks/useInterval";
 
 import "../styles/canvas.css";
 
 import { CanvasProps, WordInterface } from "../utils/types";
 import { generateWord } from "../utils/dict";
-import { CASCADE_STEP, CANVAS_HEIGHT } from "../utils/constants";
+import {
+  CASCADE_STEP,
+  CANVAS_HEIGHT,
+  MIN_LAUNCH_DELAY,
+  CASCADE_PERIOD,
+} from "../utils/constants";
 
 const Canvas = ({
   stats: { score, lives },
@@ -52,12 +58,8 @@ const Canvas = ({
     );
   };
 
-  React.useEffect(() => {
-    if (isRunning) {
-      addWord();
-      moveWords();
-    }
-  }, [isRunning]);
+  useInterval(addWord, isRunning ? MIN_LAUNCH_DELAY : null);
+  useInterval(moveWords, isRunning ? CASCADE_PERIOD : null);
 
   return (
     <div className="Canvas">
