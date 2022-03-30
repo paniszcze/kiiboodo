@@ -5,11 +5,12 @@ import "../styles/canvas.css";
 
 import { CanvasProps, WordInterface } from "../utils/types";
 import { generateWord } from "../utils/dict";
+import { randomiseDelay } from "../utils/delay";
 import {
   CASCADE_STEP,
   CANVAS_HEIGHT,
-  MIN_LAUNCH_DELAY,
   CASCADE_PERIOD,
+  MIN_LAUNCH_DELAY,
 } from "../utils/constants";
 
 const Canvas = ({
@@ -20,6 +21,8 @@ const Canvas = ({
 }: CanvasProps) => {
   const [words, setWords] = React.useState<WordInterface[]>([]);
   const [userInput, setUserInput] = React.useState<string>("");
+  const [launchDelay, setLaunchDelay] =
+    React.useState<number>(MIN_LAUNCH_DELAY);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
@@ -48,6 +51,11 @@ const Canvas = ({
     }
   };
 
+  const launchWord = () => {
+    addWord();
+    setLaunchDelay(randomiseDelay());
+  };
+
   const moveWords = () => {
     setWords((prevWords) =>
       prevWords.map((word) => {
@@ -65,7 +73,7 @@ const Canvas = ({
     );
   };
 
-  useInterval(addWord, isRunning ? MIN_LAUNCH_DELAY : null);
+  useInterval(launchWord, isRunning ? launchDelay : null);
   useInterval(moveWords, isRunning ? CASCADE_PERIOD : null);
 
   return (

@@ -26,5 +26,6 @@ export const PADDING = 8;
 // WORD CASCADE
 export const CASCADE_STEP = 3;
 export const CASCADE_PERIOD = 250;
-export const MIN_LAUNCH_DELAY = Math.ceil(FONT_WIDTH / CASCADE_STEP) * CASCADE_PERIOD;
-export const MAX_LAUNCH_DELAY = 800;
+export const MIN_LAUNCH_DELAY =
+  Math.ceil(FONT_WIDTH / CASCADE_STEP) * CASCADE_PERIOD;
+export const MAX_LAUNCH_DELAY = MIN_LAUNCH_DELAY * 2.2;
