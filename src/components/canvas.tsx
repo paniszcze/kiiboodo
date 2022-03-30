@@ -153,9 +153,17 @@ const Canvas = ({
         onChange={handleInput}
         lang="ja"
       />
+      {!isRunning && !gameOver && words.length !== 0 && (
+        <div className="modal">
+          <div className="modal-content">
+            <strong>PAUSED</strong>
+            <span lang="ja">がんばってね！</span>
+          </div>
+        </div>
+      )}
       {gameOver && (
-        <div className="game-over">
-          <div className="box">
+        <div className="modal">
+          <div className="modal-content">
             <strong>GAME OVER</strong>
             Your score: <span className="score">{stats.score}</span>
           </div>

@@ -31,7 +31,7 @@
   transform: translateX(-50%);
 }
 
-.game-over {
+.modal {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -42,20 +42,20 @@
   z-index: 99;
 }
 
-.box {
+.modal-content {
   max-width: 300px;
   max-height: 300px;
   font-size: 20px;
 }
 
-.box strong {
+.modal-content strong {
   display: block;
   padding-bottom: 16px;
   font-size: 32px;
   color: #00ff00;
 }
 
-.box .score {
+.modal-content .score {
   display: block;
   font-size: 60px;
 }
