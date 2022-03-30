@@ -36,17 +36,20 @@ const Canvas = ({ stats, setStats, isRunning, setIsRunning }: CanvasProps) => {
   };
 
   const removeWord = React.useCallback(
-    (entry: string) => {
+    (entry: string): number => {
       let index = findWord(entry);
+      let value = 0;
       if (index !== -1) {
+        value = words[index].value;
         setWords((prevWords) => {
           let newWords = [...prevWords];
           newWords.splice(index, 1);
           return newWords;
         });
       }
+      return value;
     },
-    [findWord]
+    [findWord, words]
   );
 
   const launchWord = () => {
@@ -99,8 +102,15 @@ const Canvas = ({ stats, setStats, isRunning, setIsRunning }: CanvasProps) => {
   };
 
   React.useEffect(() => {
-    removeWord(userInput);
-  }, [removeWord, userInput]);
+    if (!gameOver) {
+      let value = removeWord(userInput);
+      if (value !== 0) {
+        setStats((prevStats) => {
+          return { ...stats, score: prevStats.score + value };
+        });
+      }
+    }
+  }, [gameOver, removeWord, userInput, stats, setStats]);
 
   // CHECK FOR DEFEAT
   React.useEffect(() => {
