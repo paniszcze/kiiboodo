@@ -50,3 +50,7 @@ input {
   border-image-width: 1;
   border-image-outset: 1;
 }
+
+*[lang="ja"] {
+  font-family: DotGothic16;
+}

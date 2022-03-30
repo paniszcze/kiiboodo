@@ -7,8 +7,8 @@ import { CanvasProps, WordInterface } from "../utils/types";
 import { generateWord } from "../utils/dict";
 import { randomiseDelay } from "../utils/delay";
 import {
-  CASCADE_STEP,
   CANVAS_HEIGHT,
+  CASCADE_STEP,
   CASCADE_PERIOD,
   MIN_LAUNCH_DELAY,
   BORDER_WIDTH,
@@ -93,8 +93,15 @@ const Canvas = ({
       });
   };
 
-  // PERIODIC HOOKS
+  // INPUT HANDLING
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInput(e.target.value);
+  };
+
+  // GAME LOGIC
+  // a) add new words at random intervals
   useInterval(launchWord, isRunning ? launchDelay : null);
+  // b) move words downward, check for missed ones and update lives count
   useInterval(
     () => {
       moveWords();
@@ -102,14 +109,7 @@ const Canvas = ({
     },
     isRunning ? CASCADE_PERIOD : null
   );
-
-  // INPUT HANDLING
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInput(e.target.value);
-  };
-
-  // GAME LOGIC
-  // a) eliminate guessed words and update score
+  // c) eliminate guessed words and update score
   React.useEffect(() => {
     if (!gameOver && isRunning) {
       let value = removeWord(userInput);
@@ -120,7 +120,7 @@ const Canvas = ({
       }
     }
   }, [gameOver, isRunning, removeWord, userInput, stats, setStats]);
-  // b) reset state on re-run
+  // d) reset state on re-run
   React.useEffect(() => {
     if (gameOver && isRunning) {
       setGameOver(false);
@@ -140,6 +140,7 @@ const Canvas = ({
               key={word.text}
               className="word"
               style={{ top: `${word.y}px`, left: `${word.x}px` }}
+              lang="ja"
             >
               {word.text}
             </div>
@@ -150,6 +151,7 @@ const Canvas = ({
         placeholder="..."
         value={userInput}
         onChange={handleInput}
+        lang="ja"
       />
       {gameOver && (
         <div className="game-over">
