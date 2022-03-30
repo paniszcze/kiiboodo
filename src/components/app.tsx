@@ -16,15 +16,25 @@ const App = () => {
     lives: MAX_LIVES,
   });
   const [isRunning, setIsRunning] = React.useState<boolean>(false);
+  const [gameOver, setGameOver] = React.useState<boolean>(false);
 
+  // CHECK FOR DEFEAT
   React.useEffect(() => {
-    if (isRunning) {
+    if (stats.lives <= 0) {
+      setIsRunning(false);
+      setGameOver(true);
+    }
+  }, [stats.lives]);
+
+  // RESET STATS ON RE-RUN
+  React.useEffect(() => {
+    if (gameOver && isRunning) {
       setStats({
         score: INITIAL_SCORE,
         lives: MAX_LIVES,
       });
     }
-  }, [isRunning]);
+  }, [gameOver, isRunning]);
 
   return (
     <div className="App">
@@ -32,7 +42,8 @@ const App = () => {
         stats={stats}
         setStats={setStats}
         isRunning={isRunning}
-        setIsRunning={setIsRunning}
+        gameOver={gameOver}
+        setGameOver={setGameOver}
       />
       <div className="sidebar">
         <Header />
@@ -40,6 +51,7 @@ const App = () => {
           stats={stats}
           isRunning={isRunning}
           setIsRunning={setIsRunning}
+          gameOver={gameOver}
         />
         <Footer />
       </div>

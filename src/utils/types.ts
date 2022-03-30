@@ -21,11 +21,13 @@ export interface DashboardProps {
   stats: Stats;
   isRunning: boolean;
   setIsRunning: Dispatch<SetStateAction<boolean>>;
+  gameOver: boolean;
 }
 
 export interface CanvasProps {
   stats: Stats;
   setStats: Dispatch<SetStateAction<Stats>>;
   isRunning: boolean;
-  setIsRunning: Dispatch<SetStateAction<boolean>>;
+  gameOver: boolean;
+  setGameOver: Dispatch<SetStateAction<boolean>>;
 }

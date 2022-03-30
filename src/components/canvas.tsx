@@ -11,14 +11,20 @@ import {
   CANVAS_HEIGHT,
   CASCADE_PERIOD,
   MIN_LAUNCH_DELAY,
+  BORDER_WIDTH,
 } from "../utils/constants";
 
-const Canvas = ({ stats, setStats, isRunning, setIsRunning }: CanvasProps) => {
+const Canvas = ({
+  stats,
+  setStats,
+  isRunning,
+  gameOver,
+  setGameOver,
+}: CanvasProps) => {
   const [words, setWords] = React.useState<WordInterface[]>([]);
   const [userInput, setUserInput] = React.useState<string>("");
   const [launchDelay, setLaunchDelay] =
     React.useState<number>(MIN_LAUNCH_DELAY);
-  const [gameOver, setGameOver] = React.useState<boolean>(false);
 
   // SINGLE WORD ACTIONS
   const findWord = React.useCallback(
@@ -66,7 +72,8 @@ const Canvas = ({ stats, setStats, isRunning, setIsRunning }: CanvasProps) => {
           return {
             ...word,
             y: newPosition,
-            isEliminated: newPosition > CANVAS_HEIGHT ? true : false,
+            isEliminated:
+              newPosition > CANVAS_HEIGHT - BORDER_WIDTH ? true : false,
           };
         } else {
           return { ...word };
@@ -112,21 +119,13 @@ const Canvas = ({ stats, setStats, isRunning, setIsRunning }: CanvasProps) => {
     }
   }, [gameOver, removeWord, userInput, stats, setStats]);
 
-  // CHECK FOR DEFEAT
-  React.useEffect(() => {
-    if (stats.lives <= 0) {
-      setIsRunning(false);
-      setGameOver(true);
-    }
-  }, [stats.lives, setIsRunning]);
-
-  // RESET GAME ON RE-RUN
+  // RESET WORDS ON RE-RUN
   React.useEffect(() => {
     if (gameOver && isRunning) {
       setGameOver(false);
       setWords([]);
     }
-  }, [gameOver, isRunning]);
+  }, [gameOver, isRunning, setGameOver]);
 
   return (
     <div className="Canvas">

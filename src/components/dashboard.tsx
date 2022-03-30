@@ -9,6 +9,7 @@ const Dashboard = ({
   stats: { score, lives },
   isRunning,
   setIsRunning,
+  gameOver,
 }: DashboardProps) => {
   const handleClick = () => {
     setIsRunning((prevState: boolean) => !prevState);
@@ -17,7 +18,7 @@ const Dashboard = ({
   return (
     <div className="Dashboard">
       <button className="pixel-border out" onClick={handleClick}>
-        {isRunning ? "STOP" : "START"}
+        {gameOver ? "RETRY" : isRunning ? "PAUSE" : "START"}
       </button>
       <div className="life-bar">
         {Array(MAX_LIVES)
