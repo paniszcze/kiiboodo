@@ -4,7 +4,7 @@
 body {
   margin: 0;
   font-size: 16px;
-  font-family: VT323, sans-serif;
+  font-family: VT323, monospace;
   text-align: center;
   color: #ffffff;
   background: #000000;
@@ -30,7 +30,7 @@ button {
   padding: 2px 6px 3px;
   cursor: pointer;
   font-size: 24px;
-  font-family: VT323, sans-serif;
+  font-family: VT323, monospace;
   background-color: #ffffff;
   color: #000000;
 }

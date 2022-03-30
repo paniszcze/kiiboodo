@@ -148,6 +148,14 @@ const Canvas = ({
         value={userInput}
         onChange={handleInput}
       />
+      {gameOver && (
+        <div className="game-over">
+          <div className="box">
+            <strong>GAME OVER</strong>
+            Your score: <span className="score">{stats.score}</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

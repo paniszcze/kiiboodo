@@ -23,7 +23,7 @@
   font-family: DotGothic16;
   font-size: 20px;
   text-align: center;
-  z-index: 99;
+  z-index: 10;
 }
 
 .word {
@@ -31,4 +31,34 @@
   width: max-content;
   font-size: 14px;
   transform: translateX(-50%);
+}
+
+.game-over {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.box {
+  max-width: 300px;
+  max-height: 300px;
+  font-family: VT323, monospace;
+  font-size: 20px;
+}
+
+.box strong {
+  display: block;
+  padding-bottom: 16px;
+  font-size: 32px;
+  color: #00ff00;
+}
+
+.box .score {
+  display: block;
+  font-size: 60px;
 }
