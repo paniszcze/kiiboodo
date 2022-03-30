@@ -21,8 +21,10 @@ const Canvas = ({ stats, setStats, isRunning, setIsRunning }: CanvasProps) => {
   const [gameOver, setGameOver] = React.useState<boolean>(false);
 
   // SINGLE WORD ACTIONS
-  const findWord = (entry: string): number =>
-    words.findIndex((word) => word.text === entry);
+  const findWord = React.useCallback(
+    (entry: string): number => words.findIndex((word) => word.text === entry),
+    [words]
+  );
 
   const addWord = () => {
     let newWord: WordInterface, index: number;
@@ -33,16 +35,19 @@ const Canvas = ({ stats, setStats, isRunning, setIsRunning }: CanvasProps) => {
     setWords((prevWords) => [...prevWords, newWord]);
   };
 
-  const removeWord = (entry: string) => {
-    let index = findWord(entry);
-    if (index !== -1) {
-      setWords((prevWords) => {
-        let newWords = [...prevWords];
-        newWords.splice(index, 1);
-        return newWords;
-      });
-    }
-  };
+  const removeWord = React.useCallback(
+    (entry: string) => {
+      let index = findWord(entry);
+      if (index !== -1) {
+        setWords((prevWords) => {
+          let newWords = [...prevWords];
+          newWords.splice(index, 1);
+          return newWords;
+        });
+      }
+    },
+    [findWord]
+  );
 
   const launchWord = () => {
     addWord();
@@ -92,6 +97,10 @@ const Canvas = ({ stats, setStats, isRunning, setIsRunning }: CanvasProps) => {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
   };
+
+  React.useEffect(() => {
+    removeWord(userInput);
+  }, [removeWord, userInput]);
 
   // CHECK FOR DEFEAT
   React.useEffect(() => {
