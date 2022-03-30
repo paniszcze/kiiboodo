@@ -82,7 +82,7 @@ const Canvas = ({
     );
   };
 
-  const cleanWords = () => {
+  const scanWords = () => {
     words
       .filter((word) => word.isEliminated)
       .forEach((word) => {
@@ -93,12 +93,12 @@ const Canvas = ({
       });
   };
 
-  // PERIODIC BEHAVIOUR
+  // PERIODIC HOOKS
   useInterval(launchWord, isRunning ? launchDelay : null);
   useInterval(
     () => {
       moveWords();
-      cleanWords();
+      scanWords();
     },
     isRunning ? CASCADE_PERIOD : null
   );
@@ -108,8 +108,10 @@ const Canvas = ({
     setUserInput(e.target.value);
   };
 
+  // GAME LOGIC
+  // a) eliminate guessed words and update score
   React.useEffect(() => {
-    if (!gameOver) {
+    if (!gameOver && isRunning) {
       let value = removeWord(userInput);
       if (value !== 0) {
         setStats((prevStats) => {
@@ -117,13 +119,14 @@ const Canvas = ({
         });
       }
     }
-  }, [gameOver, removeWord, userInput, stats, setStats]);
-
-  // RESET WORDS ON RE-RUN
+  }, [gameOver, isRunning, removeWord, userInput, stats, setStats]);
+  // b) reset state on re-run
   React.useEffect(() => {
     if (gameOver && isRunning) {
       setGameOver(false);
       setWords([]);
+      setUserInput("");
+      setLaunchDelay(MIN_LAUNCH_DELAY);
     }
   }, [gameOver, isRunning, setGameOver]);
 
