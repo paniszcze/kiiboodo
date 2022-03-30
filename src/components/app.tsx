@@ -17,6 +17,15 @@ const App = () => {
   });
   const [isRunning, setIsRunning] = React.useState<boolean>(false);
 
+  React.useEffect(() => {
+    if (isRunning) {
+      setStats({
+        score: INITIAL_SCORE,
+        lives: MAX_LIVES,
+      });
+    }
+  }, [isRunning]);
+
   return (
     <div className="App">
       <Canvas

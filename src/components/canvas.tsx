@@ -13,21 +13,14 @@ import {
   MIN_LAUNCH_DELAY,
 } from "../utils/constants";
 
-const Canvas = ({
-  stats: { score, lives },
-  setStats,
-  isRunning,
-  setIsRunning,
-}: CanvasProps) => {
+const Canvas = ({ stats, setStats, isRunning, setIsRunning }: CanvasProps) => {
   const [words, setWords] = React.useState<WordInterface[]>([]);
   const [userInput, setUserInput] = React.useState<string>("");
   const [launchDelay, setLaunchDelay] =
     React.useState<number>(MIN_LAUNCH_DELAY);
+  const [gameOver, setGameOver] = React.useState<boolean>(false);
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInput(e.target.value);
-  };
-
+  // SINGLE WORD ACTIONS
   const findWord = (entry: string): number =>
     words.findIndex((word) => word.text === entry);
 
@@ -45,7 +38,7 @@ const Canvas = ({
     if (index !== -1) {
       setWords((prevWords) => {
         let newWords = [...prevWords];
-        newWords[index] = { ...prevWords[index], isEliminated: true };
+        newWords.splice(index, 1);
         return newWords;
       });
     }
@@ -56,6 +49,7 @@ const Canvas = ({
     setLaunchDelay(randomiseDelay());
   };
 
+  // WORDS ARRAY HANDLING
   const moveWords = () => {
     setWords((prevWords) =>
       prevWords.map((word) => {
@@ -73,8 +67,47 @@ const Canvas = ({
     );
   };
 
+  const cleanWords = () => {
+    words
+      .filter((word) => word.isEliminated)
+      .forEach((word) => {
+        removeWord(word.text);
+        setStats((prevStats) => {
+          return { ...stats, lives: prevStats.lives - 1 };
+        });
+      });
+  };
+
+  // PERIODIC BEHAVIOUR
   useInterval(launchWord, isRunning ? launchDelay : null);
-  useInterval(moveWords, isRunning ? CASCADE_PERIOD : null);
+  useInterval(
+    () => {
+      moveWords();
+      cleanWords();
+    },
+    isRunning ? CASCADE_PERIOD : null
+  );
+
+  // INPUT HANDLING
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInput(e.target.value);
+  };
+
+  // CHECK FOR DEFEAT
+  React.useEffect(() => {
+    if (stats.lives <= 0) {
+      setIsRunning(false);
+      setGameOver(true);
+    }
+  }, [stats.lives, setIsRunning]);
+
+  // RESET GAME ON RE-RUN
+  React.useEffect(() => {
+    if (gameOver && isRunning) {
+      setGameOver(false);
+      setWords([]);
+    }
+  }, [gameOver, isRunning]);
 
   return (
     <div className="Canvas">
