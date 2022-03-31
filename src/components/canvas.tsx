@@ -6,6 +6,7 @@ import "../styles/canvas.css";
 import { CanvasProps, WordInterface } from "../utils/types";
 import { generateWord } from "../utils/dict";
 import { randomiseDelay } from "../utils/delay";
+import { highlightMatch } from "../utils/highlight";
 import {
   CANVAS_HEIGHT,
   CASCADE_STEP,
@@ -142,7 +143,7 @@ const Canvas = ({
               style={{ top: `${word.y}px`, left: `${word.x}px` }}
               lang="ja"
             >
-              {word.text}
+              {userInput ? highlightMatch(word.text, userInput) : word.text}
             </div>
           ))}
       <input
