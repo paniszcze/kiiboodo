@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/kiiboodo/static/css/main.5ec1b7a5.css",
-    "main.js": "/kiiboodo/static/js/main.bec9e831.js",
+    "main.js": "/kiiboodo/static/js/main.7de0c83d.js",
     "index.html": "/kiiboodo/index.html",
     "main.5ec1b7a5.css.map": "/kiiboodo/static/css/main.5ec1b7a5.css.map",
-    "main.bec9e831.js.map": "/kiiboodo/static/js/main.bec9e831.js.map"
+    "main.7de0c83d.js.map": "/kiiboodo/static/js/main.7de0c83d.js.map"
   },
   "entrypoints": [
     "static/css/main.5ec1b7a5.css",
-    "static/js/main.bec9e831.js"
+    "static/js/main.7de0c83d.js"
   ]
 }
