@@ -14,4 +14,6 @@ The word list includes entries written in hiragana and katakana only. There are 
 
 Good luck!
 
+---
+
 ***Note***: *Application expects input already in Japanese, so make sure to switch to Japanese keyboard layout before starting to type. There is no conversion of latin alphabet letters nor any key mappings.*
