@@ -3,7 +3,7 @@ import { useInterval } from "../hooks/useInterval";
 
 import "../styles/canvas.css";
 
-import { CanvasProps, WordInterface } from "../utils/types";
+import { CanvasProps, Word } from "../utils/types";
 import { generateWord } from "../utils/dict";
 import { randomiseDelay } from "../utils/delay";
 import { highlightMatch } from "../utils/highlight";
@@ -11,21 +11,15 @@ import {
   CANVAS_HEIGHT,
   CASCADE_STEP,
   CASCADE_PERIOD,
-  MIN_LAUNCH_DELAY,
+  INIT_LAUNCH_DELAY,
   BORDER_WIDTH,
 } from "../utils/constants";
 
-const Canvas = ({
-  stats,
-  setStats,
-  isRunning,
-  gameOver,
-  setGameOver,
-}: CanvasProps) => {
-  const [words, setWords] = React.useState<WordInterface[]>([]);
+const Canvas = ({ stats, setStats, isRunning, gameOver }: CanvasProps) => {
+  const [words, setWords] = React.useState<Word[]>([]);
   const [userInput, setUserInput] = React.useState<string>("");
   const [launchDelay, setLaunchDelay] =
-    React.useState<number>(MIN_LAUNCH_DELAY);
+    React.useState<number>(INIT_LAUNCH_DELAY);
 
   // SINGLE WORD ACTIONS
   const findWord = React.useCallback(
@@ -34,7 +28,7 @@ const Canvas = ({
   );
 
   const addWord = () => {
-    let newWord: WordInterface, index: number;
+    let newWord: Word, index: number;
     do {
       newWord = generateWord();
       index = findWord(newWord.text);
@@ -74,7 +68,9 @@ const Canvas = ({
             ...word,
             y: newPosition,
             isEliminated:
-              newPosition > CANVAS_HEIGHT - BORDER_WIDTH ? true : false,
+              newPosition > CANVAS_HEIGHT - BORDER_WIDTH - CASCADE_STEP
+                ? true
+                : false,
           };
         } else {
           return { ...word };
@@ -124,12 +120,11 @@ const Canvas = ({
   // d) reset state on re-run
   React.useEffect(() => {
     if (gameOver && isRunning) {
-      setGameOver(false);
       setWords([]);
       setUserInput("");
-      setLaunchDelay(MIN_LAUNCH_DELAY);
+      setLaunchDelay(INIT_LAUNCH_DELAY);
     }
-  }, [gameOver, isRunning, setGameOver]);
+  }, [gameOver, isRunning]);
 
   return (
     <div className="Canvas">
@@ -154,7 +149,7 @@ const Canvas = ({
         onChange={handleInput}
         lang="ja"
       />
-      {!isRunning && !gameOver && words.length !== 0 && (
+      {!isRunning && !gameOver && !(words.length === 0 && stats.score === 0) && (
         <div className="modal">
           <div className="modal-content">
             <strong>PAUSED</strong>

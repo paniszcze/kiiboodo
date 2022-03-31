@@ -18,17 +18,18 @@ const App = () => {
   const [isRunning, setIsRunning] = React.useState<boolean>(false);
   const [gameOver, setGameOver] = React.useState<boolean>(false);
 
-  // CHECK FOR DEFEAT
+  // GAME LOGIC
+  // a) check for defeat
   React.useEffect(() => {
     if (stats.lives <= 0) {
       setIsRunning(false);
       setGameOver(true);
     }
   }, [stats.lives]);
-
-  // RESET STATS ON RE-RUN
+  // b) reset state on re-run
   React.useEffect(() => {
     if (gameOver && isRunning) {
+      setGameOver(false);
       setStats({
         score: INITIAL_SCORE,
         lives: MAX_LIVES,
@@ -43,7 +44,6 @@ const App = () => {
         setStats={setStats}
         isRunning={isRunning}
         gameOver={gameOver}
-        setGameOver={setGameOver}
       />
       <div className="sidebar">
         <Header />

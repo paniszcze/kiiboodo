@@ -11,7 +11,7 @@ import {
   STARTING_POSITION,
   PADDING,
 } from "./constants";
-import { WordInterface } from "./types";
+import { Word } from "./types";
 
 const randomiseKana = (): string =>
   Math.random() < KATAKANA_RATIO ? "katakana" : "hiragana";
@@ -38,7 +38,7 @@ const chooseRandomEntry = (): string => {
   return Dictionary[kana][len][index];
 };
 
-export const generateWord = (): WordInterface => {
+export const generateWord = (): Word => {
   let entry = chooseRandomEntry();
   let len = entry.length;
 

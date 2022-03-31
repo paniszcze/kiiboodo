@@ -5,7 +5,7 @@ export type Stats = {
   lives: number;
 };
 
-export type WordInterface = {
+export type Word = {
   text: string;
   value: number;
   x: number;
@@ -17,17 +17,16 @@ export type DelayType = number | null;
 
 export type CallbackType = (...args: any[]) => void;
 
-export interface DashboardProps {
-  stats: Stats;
-  isRunning: boolean;
-  setIsRunning: Dispatch<SetStateAction<boolean>>;
-  gameOver: boolean;
-}
-
 export interface CanvasProps {
   stats: Stats;
   setStats: Dispatch<SetStateAction<Stats>>;
   isRunning: boolean;
   gameOver: boolean;
-  setGameOver: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface DashboardProps {
+  stats: Stats;
+  isRunning: boolean;
+  setIsRunning: Dispatch<SetStateAction<boolean>>;
+  gameOver: boolean;
 }
