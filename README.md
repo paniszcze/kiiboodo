@@ -2,6 +2,8 @@
 
 Gamified typing practice of Japanese kana.
 
+![Game preview](screenshot.png)
+
 ## About
 
 キーボード (Kībōdo) is a single page application built with React. It was developped for Japanese language learners to make the skill of typing Japanese caracters a bit more fun to master.
@@ -12,6 +14,4 @@ The word list includes entries written in hiragana and katakana only. There are 
 
 Good luck!
 
-![Game preview](screenshot.png)
-
-***Note****: Application expects input already in Japanese, so make sure to switch to Japanese keyboard layout before starting to type. There is no conversion of latin alphabet letters nor any key mappings.*
+***Note***: *Application expects input already in Japanese, so make sure to switch to Japanese keyboard layout before starting to type. There is no conversion of latin alphabet letters nor any key mappings.*
