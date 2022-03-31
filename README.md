@@ -11,3 +11,7 @@ The task at hand is to type Japanese words that appear on the screen before they
 The word list includes entries written in hiragana and katakana only. There are no kanji characters in order to make the practice more about typing and memorizing keyboard layout rather than recognizing kanji.
 
 Good luck!
+
+![Game preview](screenshot.png)
+
+***Note****: Application expects input already in Japanese, so make sure to switch to Japanese keyboard layout before starting to type. There is no conversion of latin alphabet letters nor any key mappings.*
