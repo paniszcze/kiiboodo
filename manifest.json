@@ -1,6 +1,13 @@
 {
   "short_name": "Kiiboodo",
   "name": "Gamified kana typing practice",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
